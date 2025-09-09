@@ -239,13 +239,13 @@
         <section id="contact" class="py-20 container mx-auto px-6 text-center max-w-2xl reveal">
              <h2 class="text-3xl font-bold text-[#ccd6f6] mb-4"><span class="text-[#64ffda] mr-2">04.</span>Get In Touch</h2>
              <p class="mb-8">I'm currently open to new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll do my best to get back to you!</p>
-             <form class="space-y-6">
+             <form class="space-y-6" onsubmit="handleFormSubmit(event)">
                 <input type="text" placeholder="Your Name" class="w-full p-3 rounded-md form-input">
                 <input type="email" placeholder="Your Email" class="w-full p-3 rounded-md form-input">
                 <textarea placeholder="Your Message" rows="5" class="w-full p-3 rounded-md form-input"></textarea>
-                <button type="submit" title="Good job!" class="btn-primary font-semibold px-10 py-4 rounded-md"
+                <button type="submit" title="Good job!" class="btn-primary font-semibold px-10 py-4 rounded-md">
                   
-                  onclic="alert('Thank you for connecting us');">
+                  
                      
                                 
                  <a href="mailto:1709manishbkp@gmail.com">Say Hello</a>
@@ -280,7 +280,11 @@
     </div>
 
     <script>
-       alert('Manish portfolio ');
+       alert('Welcome to my portfolio ');
+        function handleFormSubmit(event) {
+            event.preventDefault();
+        }
+            alert('Thank you for connecting with us!');
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile menu toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
