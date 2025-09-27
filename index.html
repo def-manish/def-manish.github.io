@@ -86,6 +86,37 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* Chat Widget Styles */
+#chat-messages::-webkit-scrollbar {
+    width: 5px;
+}
+#chat-messages::-webkit-scrollbar-thumb {
+    background-color: #64ffda;
+    border-radius: 10px;
+}
+.chat-message {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+.user-message .message-bubble {
+    background-color: #64ffda;
+    color: #0a192f;
+    align-self: flex-end;
+}
+.bot-message .message-bubble {
+    background-color: #233554;
+    color: #ccd6f6;
+    align-self: flex-start;
+}
+.message-bubble {
+    padding: 8px 12px;
+    border-radius: 18px;
+    max-width: 80%;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
     </style>
 </head>
 <body class="text-slate-400">
@@ -264,6 +295,24 @@
             </div>
             <p class="text-slate-500">&copy; 2025 Designed & Built by Manish.</p>
         </div>
+           <div id="chat-widget-container">
+    <div id="chat-bubble" class="fixed bottom-8 right-8 w-16 h-16 bg-[#64ffda] rounded-full flex items-center justify-center cursor-pointer shadow-lg transform hover:scale-110 transition-transform">
+        <i class="fas fa-comment-dots text-2xl text-[#0a192f]"></i>
+    </div>
+
+    <div id="chat-window" class="hidden fixed bottom-28 right-8 w-80 h-96 bg-[#112240] rounded-lg shadow-2xl flex flex-col">
+        <div class="p-4 bg-[#0a192f] rounded-t-lg">
+            <h3 class="font-bold text-white">Chat with my Agent</h3>
+            <p class="text-xs text-slate-400">Ask me about my projects, skills, etc.</p>
+        </div>
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto">
+            </div>
+        <div class="p-2 border-t border-[#233554]">
+            <input type="text" id="chat-input" placeholder="Type a message..." class="w-full p-2 rounded-md form-input">
+        </div>
+     </div>
+  </div>
+
     </footer>
 
     <!-- Social Links Side Bar -->
@@ -348,6 +397,74 @@
                 revealObserver.observe(el);
             });
         });
+          // --- Chatbot Logic ---
+const chatBubble = document.getElementById('chat-bubble');
+const chatWindow = document.getElementById('chat-window');
+const chatMessages = document.getElementById('chat-messages');
+const chatInput = document.getElementById('chat-input');
+
+// Toggle chat window
+chatBubble.addEventListener('click', () => {
+    chatWindow.classList.toggle('hidden');
+});
+
+// Send message on Enter key
+chatInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter' && chatInput.value.trim() !== '') {
+        sendMessage(chatInput.value.trim());
+    }
+});
+
+function addMessage(text, sender) {
+    const messageContainer = document.createElement('div');
+    messageContainer.className = `chat-message ${sender}-message`;
+    
+    const messageBubble = document.createElement('div');
+    messageBubble.className = 'message-bubble';
+    messageBubble.textContent = text;
+    
+    messageContainer.appendChild(messageBubble);
+    chatMessages.appendChild(messageContainer);
+    
+    // Scroll to the latest message
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+async function sendMessage(userText) {
+    // Display user's message immediately
+    addMessage(userText, 'user');
+    const userMessageValue = chatInput.value;
+    chatInput.value = ''; // Clear input field
+
+    try {
+        // Send message to the Flask backend
+        const response = await fetch('http://127.0.0.1:5000/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: userText }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        const botReply = data.reply;
+        
+        // Display bot's response
+        addMessage(botReply, 'bot');
+
+    } catch (error) {
+        console.error('Error:', error);
+        addMessage('Sorry, something went wrong. Please try again later.', 'bot');
+    }
+}
+
+// Add an initial welcome message from the bot
+addMessage("Hello! I'm Manish's portfolio agent. Ask me about his projects or skills!", 'bot');
+
     </script>
 </body>
 </html>
