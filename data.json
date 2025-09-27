@@ -1,0 +1,27 @@
+{
+  "personal_info": {
+    "introduction": "Hello! I'm Manish's portfolio agent. You can ask me about his skills, projects, or how to contact him!",
+    "contact": "You can reach Manish at his email: 1709manishbkp@gmail.com."
+  },
+  "skills": {
+    "languages": ["JavaScript", "React & Next.js", "Node.js", "TypeScript", "Python", "Firebase"]
+  },
+  "projects": [
+    {
+      "name": "E-commerce Platform",
+      "description": "a full-stack online store built with the MERN stack, featuring payment integration and an admin dashboard.",
+      "link": "https://github.com/def-manish"
+    },
+    {
+      "name": "Task Management App",
+      "description": "a responsive task manager with real-time updates using Vue.js and Firebase.",
+      "link": "#"
+    },
+    {
+        "name": "Personal Blog",
+        "description": "a blazing-fast static blog built with Next.js & Markdown.",
+        "link": "#"
+    }
+  ],
+  "farewell": "Thanks for chatting! Have a great day."
+}
