@@ -378,6 +378,25 @@
      </div>-->
 
     <script>
+              // --- Custom Alert Logic ---
+       const alertOverlay = document.getElementById('custom-alert-overlay');
+       const alertCloseBtn = document.getElementById('alert-close-btn');
+
+       // Show the alert when the page loads
+       alertOverlay.classList.add('show');
+
+       // Hide the alert when the close button is clicked
+       alertCloseBtn.addEventListener('click', () => {
+           alertOverlay.classList.remove('show');
+       });
+       
+       // Optional: Hide the alert when clicking on the background overlay
+       alertOverlay.addEventListener('click', (event) => {
+           if (event.target === alertOverlay) {
+               alertOverlay.classList.remove('show');
+           }
+       });
+
       // alert('Welcome to my portfolio.');
         function handleFormSubmit(event) {
             event.preventDefault();
