@@ -147,11 +147,18 @@ async function sendMessage(userText) {
         // Display bot's response
         addMessage(botReply, 'bot');
 
-    } catch (error) {
+    /*} catch (error) {
         console.error('Error:', error);
         addMessage('Sorry, something went wrong. Please try again later.', 'bot');
-    }
+    }*/
+      catch (error) {
+    // This is the new code to show the real error
+    const errorMessage = error.toString();
+    addMessage(`The error is: ${errorMessage}`, 'bot'); 
 }
+
+}
+
 
 // Add an initial welcome message from the bot
 addMessage("Hello! I'm Manish's portfolio agent. Ask me about his projects or skills!", 'bot');
