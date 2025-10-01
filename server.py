@@ -2,7 +2,7 @@
 
 import json
 import os
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 # --- This is the PortfolioAgent class from before ---
@@ -52,10 +52,6 @@ try:
 except FileNotFoundError:
     print("Error: data.json not found! Make sure to rename data.json.txt to data.json")
 
-@app.route('/')
-def home():
-    # This will serve your index.html file
-    return render_template('index.html')
 
 @app.route('/chat', methods=['POST'])
 def chat():
