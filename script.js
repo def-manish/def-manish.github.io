@@ -157,7 +157,7 @@ async function sendMessage(userText) {
     addMessage(`The error is: ${errorMessage}`, 'bot'); 
 }
 
-}
+  {
 
 
 // Add an initial welcome message from the bot
