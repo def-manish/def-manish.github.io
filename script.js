@@ -147,10 +147,6 @@ async function sendMessage(userText) {
         // Display bot's response
         addMessage(botReply, 'bot');
 
-    /*} catch (error) {
-        console.error('Error:', error);
-        addMessage('Sorry, something went wrong. Please try again later.', 'bot');
-    }*/
       catch (error) {
     // This is the new code to show the real error
     const errorMessage = error.toString();
