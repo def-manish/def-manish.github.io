@@ -126,7 +126,7 @@ async function sendMessage(userText) {
     chatInput.value = ''; // Clear input field
 
     try {
-        // Send message to the Flask backend
+         Send message to the Flask backend
         const response = await
         fetch('https://manish-in.onrender.com/chat', { 
 
