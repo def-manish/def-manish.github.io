@@ -127,7 +127,7 @@ async function sendMessage(userText) {
 
     try {
         // Send message to the Flask backend
-       // const response = await fetch('http://127.0.0.1:5000/chat', {
+        const response = await
         fetch('https://manish-in.onrender.com/chat', { 
 
             method: 'POST',
@@ -147,7 +147,7 @@ async function sendMessage(userText) {
         // Display bot's response
         addMessage(botReply, 'bot');
 
-      catch (error) {
+    } catch (error) {
     // This is the new code to show the real error
     const errorMessage = error.toString();
     addMessage(`The error is: ${errorMessage}`, 'bot'); 
@@ -157,4 +157,3 @@ async function sendMessage(userText) {
 
 // Add an initial welcome message from the bot
 addMessage("Hello! I'm Manish's portfolio agent. Ask me about his projects or skills!", 'bot');
-
