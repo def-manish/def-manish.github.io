@@ -40,7 +40,7 @@ class PortfolioAgent:
 
 # --- Flask App Setup ---
 app = Flask(__name__)
-cors = (CORSapp, origins='#')  # Enable CORS for all routes
+cors = CORS(app, origins='#')  # Enable CORS for all routes
 
 # Create templates directory if it doesn't exist
 if not os.path.exists('templates'):
