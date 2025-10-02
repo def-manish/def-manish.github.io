@@ -151,10 +151,8 @@ async function sendMessage(userText) {
     // This is the new code to show the real error
     const errorMessage = error.toString();
     addMessage(`The error is: ${errorMessage}`, 'bot'); 
+  }
 }
-
-  {
-
 
 // Add an initial welcome message from the bot
 addMessage("Hello! I'm Manish's portfolio agent. Ask me about his projects or skills!", 'bot');
