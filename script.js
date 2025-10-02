@@ -152,7 +152,9 @@ async function sendMessage(userText) {
     const errorMessage = error.toString();
     addMessage(`The error is: ${errorMessage}`, 'bot'); 
   }
-}
+
+
 
 // Add an initial welcome message from the bot
 addMessage("Hello! I'm Manish's portfolio agent. Ask me about his projects or skills!", 'bot');
+}
