@@ -150,7 +150,7 @@ async function sendMessage(userText) {
     } catch (error) {
     // This is the new code to show the real error
     const errorMessage = error.toString();
-    addMessage(`The error is: ${errorMessage}`, 'bot'); 
+    addMessage('The error is: ${errorMessage}', 'bot'); 
   }
 }
 
