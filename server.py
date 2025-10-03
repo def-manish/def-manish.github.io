@@ -1,11 +1,10 @@
 # server.py
 
 import json
-import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-# --- This is the PortfolioAgent class from before ---
+# --- This is the PortfolioAgent class ---
 class PortfolioAgent:
     def __init__(self, knowledge_base_path):
         with open(knowledge_base_path, 'r') as f:
@@ -28,7 +27,7 @@ class PortfolioAgent:
         elif any(keyword in lowered_input for keyword in ['bye', 'thanks', 'thank you']):
             return self.knowledge['farewell']
         else:
-           return "I'm not sure how to answer that. You can ask me about 'skills', 'projects', or 'contact'."
+            return "I'm not sure how to answer that. You can ask me about 'skills', 'projects', or 'contact'."
 
     def get_project_details(self, user_input):
         projects = self.knowledge['projects']
@@ -40,30 +39,31 @@ class PortfolioAgent:
 
 # --- Flask App Setup ---
 app = Flask(__name__)
-cors = CORS(app, origins'*') # Enable CORS for all routes
-
-# Create templates directory if it doesn't exist
-if not os.path.exists('templates'):
-    os.makedirs('templates')
+# This line fixes the CORS and SyntaxError issue
+cors = CORS(app, origins='*')
 
 # Create an instance of our agent
 try:
     portfolio_bot = PortfolioAgent('data.json')
 except FileNotFoundError:
-    print("Error: data.json not found! Make sure to rename data.json.txt to data.json")
-
+    print("Error: data.json not found! Make sure it is in your repository.")
+    portfolio_bot = None
 
 @app.route('/chat', methods=['POST'])
 def chat():
+    if not portfolio_bot:
+        return jsonify({'reply': 'Sorry, the bot is not configured correctly.'}), 500
     try:
-        # This is the endpoint your JavaScript will call
         user_message = request.json['message']
         bot_response = portfolio_bot.get_response(user_message)
         return jsonify({'reply': bot_response})
     except Exception as e:
+        print(f"Error processing message: {e}")
         return jsonify({'reply': 'Sorry, there was an error processing your message.'}), 500
 
 if __name__ == '__main__':
-    print("Starting Flask server... Your portfolio will be live at http://127.0.0.1:5000")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    print("Starting Flask server...")
+    app.run(debug=False, host='0.0.0.0', port=5000)
+
+
 
