@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="static/main.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='main.css')}}">
     
 </head>
 <body class="text-slate-400">
@@ -221,7 +221,7 @@
         <div class="h-24 w-px bg-slate-600"></div>
     </div>
 
-    <script src="static/script.js">
+    <script src="{{ url_for('static',filename='script.js')}}">
               
     </script>
 </body>
