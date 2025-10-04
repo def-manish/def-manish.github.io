@@ -48,6 +48,11 @@ try:
 except FileNotFoundError:
     print("Error: data.json not found! Make sure it is in your repository.")
     portfolio_bot = None
+    # Add this function to serve your main page
+@app.route('/')
+def home():
+    return render_template('index.html')
+
 
 @app.route('/chat', methods=['POST'])
 def chat():
