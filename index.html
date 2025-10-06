@@ -171,9 +171,11 @@
              <h2 class="text-3xl font-bold text-[#ccd6f6] mb-4"><span class="text-[#64ffda] mr-2">04.</span>Get In Touch</h2>
              <p class="mb-8">I'm currently open to new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll do my best to get back to you!</p>
              <form class="space-y-6" onsubmit="handleFormSubmit(event)">
-                <input type="text" placeholder="Your Name" class="w-full p-3 rounded-md form-input">
-                <input type="email" placeholder="Your Email" class="w-full p-3 rounded-md form-input">
-                <textarea placeholder="Your Message" rows="5" class="w-full p-3 rounded-md form-input"></textarea>
+                <input type="text" placeholder="Your Name" class="w-full p-3 rounded-md form-input" required>
+                <input type="email" placeholder="Your Email" class="w-full p-3 rounded-md form-input" required>
+                <textarea placeholder="Your Message" rows="5" class="w-full p-3 rounded-md form-input">
+                    
+                </textarea>
                 <button type="submit"  class="btn-primary font-semibold px-10 py-4 rounded-md">                                                                                         
                  <a href="mailto:1709manishbkp@gmail.com">Say Hello</a>                           
                 </button>
@@ -191,7 +193,7 @@
             </div>
             <p class="text-slate-500">&copy; 2025 Designed & Built by Manish.</p>
         </div>
-        
+        <!-- Bot -->
            <div id="chat-widget-container">
     <div id="chat-bubble" class="fixed bottom-8 right-8 w-16 h-16 bg-[#64ffda] rounded-full flex items-center justify-center cursor-pointer shadow-lg transform hover:scale-110 transition-transform">
         <i class="fas fa-comment-dots text-2xl text-[#0a192f]"></i>
