@@ -1,3 +1,5 @@
+document.getElementById("year").textContent = new Date().getFullYear();
+
 // --- Custom Alert Logic ---
 const alertOverlay = document.getElementById('custom-alert-overlay');
 const alertCloseBtn = document.getElementById('alert-close-btn');
